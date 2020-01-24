@@ -36,3 +36,39 @@ exports.addRequest = functions.https.onCall((data, context) => {
     upvotes: 0
   });
 });
+
+// // upvote callable function
+exports.upvote = functions.https.onCall((data, context) => {
+  // check auth state
+  if (!context.auth) {
+    throw new functions.https.HttpsError(
+      'unauthenticated', 
+      'only authenticated users can vote up requests'
+    );
+  }
+  // get refs for user doc & request doc
+  const user = admin.firestore().collection('users').doc(context.auth.uid);
+  const request = admin.firestore().collection('requests').doc(data.id);
+
+  return user.get().then(doc => {
+    // check thew user hasn't already upvoted
+    if(doc.data().upvotedOn.includes(data.id)){
+      throw new functions.https.HttpsError(
+        'failed-precondition', 
+        'You can only vote something up once'
+      );
+    }
+
+    // update the array in user document
+    return user.update({
+      upvotedOn: [...doc.data().upvotedOn, data.id]
+    })
+    .then(() => {
+      // update the votes on the request
+      return request.update({
+        upvotes: admin.firestore.FieldValue.increment(1)
+      });
+    });
+
+  });
+});
