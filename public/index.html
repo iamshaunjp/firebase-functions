@@ -20,6 +20,30 @@
   </head>
   <body>
 
+    <!-- auth modals -->
+    <div class="auth open">
+      <div class="modal active">
+        <h2>Login</h2>
+        <form class="login">
+          <input type="text" name="email" placeholder="Email">
+          <input type="password" name="password" placeholder="Password">
+          <button>Login</button>
+          <p class="error"></p>
+        </form>
+        <div>No account? <a class="switch">Register instead</a></div>
+      </div>
+      <div class="modal">
+        <h2>Register</h2>
+        <form class="register">
+          <input type="text" name="email" placeholder="Email">
+          <input type="password" name="password" placeholder="Password">
+          <button>Register</button>
+          <p class="error"></p>
+        </form>
+        <div>Got an account? <a class="switch">Login instead</a></div>
+      </div>
+    </div>
+
     <!-- new request modal -->
     <div class="new-request">
       <div class="modal">
@@ -54,5 +78,6 @@
     </section>
     
     <script src="js/app.js"></script>
+    <script src="js/auth.js"></script>
   </body>
 </html>
