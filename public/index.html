@@ -60,7 +60,7 @@
           <span class="text">{{ request.text }}</span>
           <div>
             <span class="votes">{{ request.upvotes }}</span>
-            <i class="material-icons upvote">arrow_upward</i>
+            <i class="material-icons upvote" v-on:click="upvoteRequest(request.id)">arrow_upward</i>
           </div>
         </li>
       </ul>
