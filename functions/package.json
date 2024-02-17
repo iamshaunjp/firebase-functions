@@ -13,8 +13,16 @@
     "node": "8"
   },
   "dependencies": {
+    "@google-cloud/vision": "^2.4.2",
+    "@sokratis/passport-linkedin-oauth2": "^2.1.0",
+    "busboy": "^1.6.0",
     "firebase-admin": "^8.6.0",
-    "firebase-functions": "^3.3.0"
+    "firebase-functions": "^3.3.0",
+    "form-data": "^4.0.0",
+    "jimp": "^0.16.1",
+    "path": "^0.12.7",
+    "pusher-js": "^8.2.0",
+    "socket.io": "^4.7.1"
   },
   "devDependencies": {
     "eslint": "^5.12.0",
